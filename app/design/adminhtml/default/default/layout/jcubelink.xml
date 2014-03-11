@@ -1,0 +1,7 @@
+<layout>
+    <jcubelink_adminhtml_jcubelink_index>
+        <reference name="content">
+            <block name="jcubeiframe" type="jcubelink/adminhtml_iframe" />
+        </reference>
+    </jcubelink_adminhtml_jcubelink_index>
+</layout>

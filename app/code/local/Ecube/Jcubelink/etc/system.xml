@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <jcubelink translate="label" module="jcubelink">
+            <label>jCube Link</label>
+            <tab>advanced</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <groups>
+                <customer translate="label">
+                    <label>Customer</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <id>
+                            <label>Customer ID</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <sort_order>1</sort_order>
+                        </id>
+                        <key>
+                            <label>Customer Key</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <sort_order>2</sort_order>
+                        </key>
+                    </fields>
+                    <expanded>1</expanded>
+                </customer>
+                <frame translate="label">
+                    <label>Frame</label>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <width>
+                            <label>Frame width</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <sort_order>1</sort_order>
+                        </width>
+                        <height>
+                            <label>Frame height</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <sort_order>2</sort_order>
+                        </height>
+                    </fields>
+                </frame>
+                <cartsync translate="label">
+                    <label>Shopping Cart Sync</label>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>1</sort_order>
+                            <comment>Master switch for sync. If disabled no cart will be synced</comment>
+                        </enabled>
+                        <retreive translate="label comment">
+                            <label>Retreive cart from jCube</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>2</sort_order>
+                            <comment>Should be enabled</comment>
+                        </retreive>
+                        <retreive_on_routes translate="label comment">
+                            <label>Retreive on routes</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>3</sort_order>
+                            <comment>Retreive cart only when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/^(\/customer\/|\/checkout\/cart).*$/&lt;/em&gt;</comment>
+                        </retreive_on_routes>
+                        <send translate="label comment">
+                            <label>Send cart to jCube</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>4</sort_order>
+                            <comment>Should be enabled</comment>
+                        </send>
+                        <no_send_on_routes translate="label comment">
+                            <label>Send routes exception</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>5</sort_order>
+                            <comment>Don't send cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/^(\/jcubelink\/).*$/&lt;/em&gt;</comment>
+                        </no_send_on_routes>
+                        <api_url_getbasket translate="label comment">
+                            <label>API URL Get basket</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>6</sort_order>
+                            <comment>For fake basket use &lt;em&gt;http://DOMAIN/jcubelink/fakebasket/getBasket&lt;/em&gt;</comment>
+                        </api_url_getbasket>
+                        <api_url_setbasket translate="label comment">
+                            <label>API URL Set basket</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>7</sort_order>
+                            <comment>For fake basket use &lt;em&gt;http://DOMAIN/jcubelink/fakebasket/setBasket&lt;/em&gt;</comment>
+                        </api_url_setbasket>
+                    </fields>
+                </cartsync>
+                <advanced translate="label">
+                    <label>Advanced</label>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <debug translate="label comment">
+                            <label>Enable debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>1</sort_order>
+                            <comment>Enables logging</comment>
+                        </debug>
+                        <log_force translate="label comment">
+                            <label>Force logging</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>2</sort_order>
+                            <comment>If enabled the module will log even if default logging is disabled</comment>
+                        </log_force>
+                        <log_transport translate="label">
+                            <label>Log full transport object</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>3</sort_order>
+                        </log_transport>
+                        <log_download translate="label">
+                            <label>Download</label>
+                            <caption>Download jcubelink.log</caption>
+                            <action>jcubelink/adminhtml_jcubelink/downloadLog</action>
+                            <css_class>scalable go</css_class>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>jcubelink/adminhtml_system_config_form_field_button</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </log_download>
+                        <log_clear translate="label">
+                            <label>Clear</label>
+                            <caption>Clear jcubelink.log</caption>
+                            <action>jcubelink/adminhtml_jcubelink/clearLog</action>
+                            <action_confirm>Clear log file?</action_confirm>
+                            <css_class>scalable</css_class>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>jcubelink/adminhtml_system_config_form_field_button</frontend_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </log_clear>
+                    </fields>
+                </advanced>
+            </groups>
+        </jcubelink>
+    </sections>
+</config>

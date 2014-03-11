@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ecube_Jcubelink>
+            <version>0.2.1</version>
+        </Ecube_Jcubelink>
+    </modules>
+
+    <global>
+        <models>
+            <jcubelink>
+                <class>Ecube_Jcubelink_Model</class>
+            </jcubelink>
+        </models>
+        <blocks>
+            <jcubelink>
+                <class>Ecube_Jcubelink_Block</class>
+            </jcubelink>
+        </blocks>
+        <helpers>
+            <jcubelink>
+                <class>Ecube_Jcubelink_Helper</class>
+            </jcubelink>
+        </helpers>
+    </global>
+
+    <frontend>
+        <events>
+            <!-- retreive cart event -->
+            <controller_action_predispatch>
+                <observers>
+                    <jcubelink>
+                        <class>Ecube_Jcubelink_Model_Observer_Sync</class>
+                        <method>controllerPredispatch</method>
+                    </jcubelink>
+                </observers>
+            </controller_action_predispatch>
+
+            <!-- checkout_cart_save_after -->
+            <checkout_cart_save_after>
+                <observers>
+                    <jcubelink>
+                        <class>Ecube_Jcubelink_Model_Observer_Sync</class>
+                        <method>cartSaveAfter</method>
+                    </jcubelink>
+                </observers>
+            </checkout_cart_save_after>
+
+            <!-- just before respone -->
+            <controller_front_send_response_before>
+                <observers>
+                    <jcubelink>
+                        <class>Ecube_Jcubelink_Model_Observer_Sync</class>
+                        <method>sendResponseBefore</method>
+                    </jcubelink>
+                </observers>
+            </controller_front_send_response_before>
+
+            <!-- could be this is not needed anymore -->
+            <customer_logout>
+                <observers>
+                    <jcubelink>
+                        <class>Ecube_Jcubelink_Model_Observer_Sync</class>
+                        <method>customerLogout</method>
+                    </jcubelink>
+                </observers>
+            </customer_logout>
+
+            <!-- quote merge -->
+            <sales_quote_merge_after>
+                <observers>
+                    <jcubelink>
+                        <class>Ecube_Jcubelink_Model_Observer_Sync</class>
+                        <method>quoteMergeAfter</method>
+                    </jcubelink>
+                </observers>
+            </sales_quote_merge_after>
+        </events>
+
+        <!-- Router needed for debug -->
+        <routers>
+            <jcubelink>
+                <use>standard</use>
+                <args>
+                    <module>Ecube_Jcubelink</module>
+                    <frontName>jcubelink</frontName>
+                </args>
+            </jcubelink>
+        </routers>
+    </frontend>
+
+    <admin>
+        <routers>
+            <jcubelink>
+                <use>admin</use>
+                <args>
+                    <module>Ecube_Jcubelink</module>
+                    <frontName>jcubelink</frontName>
+                </args>
+            </jcubelink>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <menu>
+            <jcubelink translate="title">
+                <title>jCube</title>
+                <sort_order>51</sort_order>
+                <children>
+                    <jcubelinkgo translate="title">
+                        <title>jCube</title>
+                        <action>jcubelink/adminhtml_jcubelink</action>
+                    </jcubelinkgo>
+                    <jcubelinkconfig translate="title">
+                        <title>Configuration</title>
+                        <action>adminhtml/system_config/edit/section/jcubelink</action> 
+                    </jcubelinkconfig>
+                </children>
+            </jcubelink>
+        </menu>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <jcubelink translate="title" module="jcubelink">
+                                            <title>jCubeLink</title>
+                                        </jcubelink>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                        <jcubelink translate="title" module="jcubelink">
+                            <title>jCubeLink</title>
+                            <children>
+                                <jcubelinkgo translate="title" module="jcubelink">
+                                    <title>jCube</title>
+                                </jcubelinkgo>
+                                <jcubelinkconfig translate="title" module="jcubelink">
+                                    <title>Configuration</title>
+                                </jcubelinkconfig>
+                            </children>
+                        </jcubelink>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <jcubelink>
+                    <file>jcubelink.xml</file>
+                </jcubelink>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <jcubelink>
+            <frame>
+                <url>http://www.e-cube.nl/</url>
+                <width>100%</width>
+                <height>450px</height>
+            </frame>
+            <customer>
+                <id>0</id>
+                <key></key>
+            </customer>
+            <cartsync>
+                <enabled>0</enabled>
+                <retreive>1</retreive>
+                <retreive_on_routes>/^(\/customer\/|\/checkout\/cart).*$/</retreive_on_routes>
+                <send>1</send>
+                <no_send_on_routes>/^(\/jcubelink\/).*$/</no_send_on_routes>
+                <!--<api_url_getbasket>http://ts-jcube01-dev.e-cube.nl/mgnapi/requestBasket</api_url_getbasket>
+                <api_url_setbasket>http://ts-jcube01-dev.e-cube.nl/mgnapi/updateBasket</api_url_setbasket>-->
+                <api_url_getbasket>http://SHOPDOMAIN/jcubelink/fakebasket/getBasket</api_url_getbasket>
+                <api_url_setbasket>http://SHOPDOMAIN/jcubelink/fakebasket/setBasket</api_url_setbasket>
+            </cartsync>
+            <advanced>
+                <debug>0</debug>
+                <log_force>0</log_force>
+                <log_transport>0</log_transport>
+            </advanced>
+        </jcubelink>
+    </default>
+</config>
