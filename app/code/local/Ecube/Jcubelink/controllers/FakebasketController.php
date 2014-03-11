@@ -157,3 +157,4 @@ class Ecube_Jcubelink_FakebasketController extends Mage_Core_Controller_Front_Ac
         $this->renderLayout();
     }
 }
+
