@@ -1,9 +1,9 @@
 <?php
 
-class Ecube_Jcubelink_Model_Observer_Sync {
+class Ecube_JcubeConnect_Model_Observer_Sync {
     /**
      * Helper object
-     * @var Ecube_Jcubelink_Helper_Data
+     * @var Ecube_JcubeConnect_Helper_Data
      */
     protected $_helper;
 
@@ -15,11 +15,11 @@ class Ecube_Jcubelink_Model_Observer_Sync {
 
     /**
      * Load helper object
-     * @return Ecube_Jcubelink_Helper_Data
+     * @return Ecube_JcubeConnect_Helper_Data
      */
     protected function helper() {
         if (!isset($this->_helper))
-            $this->_helper = Mage::helper('jcubelink');
+            $this->_helper = Mage::helper('jcubeconnect');
         return $this->_helper;
     }
 
@@ -53,7 +53,7 @@ class Ecube_Jcubelink_Model_Observer_Sync {
             $request = $front->getRequest()->getRequestUri();
             if (preg_match($this->helper()->getConfigData('cartsync/retreive_on_routes'), $request, $matches)) {
                 $this->helper()->log('initController match: ' . $request);
-                $sync = Mage::getSingleton('jcubelink/sync');
+                $sync = Mage::getSingleton('jcubeconnect/sync');
                 //$sync->startFrontendSession();
                 $sync->retreiveBasket();
             }
@@ -70,7 +70,7 @@ class Ecube_Jcubelink_Model_Observer_Sync {
             $request = $front->getRequest()->getRequestUri();
             if (preg_match($this->helper()->getConfigData('cartsync/retreive_on_routes'), $request, $matches)) {
                 $this->helper()->log('initController match: ' . $request);
-                $sync = Mage::getSingleton('jcubelink/sync');
+                $sync = Mage::getSingleton('jcubeconnect/sync');
                 $sync->retreiveBasket();
             }
         }
@@ -83,7 +83,7 @@ class Ecube_Jcubelink_Model_Observer_Sync {
 
         $this->helper()->log('cartSaveAfter');
 
-        $sync = Mage::getSingleton('jcubelink/sync');
+        $sync = Mage::getSingleton('jcubeconnect/sync');
         $sync->setCartSaveOccurred(true);
         $sync->sendBasket();
     }
@@ -95,7 +95,7 @@ class Ecube_Jcubelink_Model_Observer_Sync {
         try {
             $request = $observer->getFront()->getRequest()->getRequestUri();
             if (!preg_match($this->helper()->getConfigData('cartsync/no_send_on_routes'), $request, $matches)) {
-                $sync = Mage::getSingleton('jcubelink/sync');
+                $sync = Mage::getSingleton('jcubeconnect/sync');
                 if (!$sync->getCartSaveOccurred()) {
                     $this->helper()->log('sendResponseBefore ' . $request);
                     $sync->sendBasket();
@@ -110,7 +110,7 @@ class Ecube_Jcubelink_Model_Observer_Sync {
             return;
 
         try {
-            $sync = Mage::getSingleton('jcubelink/sync');
+            $sync = Mage::getSingleton('jcubeconnect/sync');
             $this->helper()->log('custmerLogout');
             $sync->sendBasket('logout');
             $sync->setCustomerLogoutOccurred(true);
@@ -124,7 +124,7 @@ class Ecube_Jcubelink_Model_Observer_Sync {
             return;
 
         try {
-            $sync = Mage::getSingleton('jcubelink/sync');
+            $sync = Mage::getSingleton('jcubeconnect/sync');
             $this->helper()->log('quoteMergeAfter ' . $request);
             $sync->sendBasket();
         }

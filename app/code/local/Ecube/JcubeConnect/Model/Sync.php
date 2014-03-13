@@ -1,13 +1,13 @@
 <?php
 
-class Ecube_Jcubelink_Model_Sync {
+class Ecube_JcubeConnect_Model_Sync {
     const MAGENTO_COOKIE = 'frontend';
     const BASKET_RETREIVE = true;
     const BASKET_SEND = true;
 
     /**
      * Helper object
-     * @var Ecube_Jcubelink_Helper_Data
+     * @var Ecube_JcubeConnect_Helper_Data
      */
     protected $_helper;
 
@@ -19,7 +19,7 @@ class Ecube_Jcubelink_Model_Sync {
 
     /**
      * Transport object
-     * @var Ecube_Jcubelink_Model_Sync_Transport
+     * @var Ecube_JcubeConnect_Model_Sync_Transport
      */
     protected $_transport;
 
@@ -37,21 +37,21 @@ class Ecube_Jcubelink_Model_Sync {
 
     /**
      * Load helper object
-     * @return Ecube_Jcubelink_Helper_Data
+     * @return Ecube_JcubeConnect_Helper_Data
      */
     protected function helper() {
         if (!isset($this->_helper))
-            $this->_helper = Mage::helper('jcubelink');
+            $this->_helper = Mage::helper('jcubeconnect');
         return $this->_helper;
     }
 
     /**
      * Load transport object
-     * @return Ecube_Jcubelink_Model_Sync_Transport
+     * @return Ecube_JcubeConnect_Model_Sync_Transport
      */
     protected function getTransport() {
         if (!isset($this->_transport))
-            $this->_transport = Mage::getSingleton('jcubelink/sync_transport');
+            $this->_transport = Mage::getSingleton('jcubeconnect/sync_transport');
         return $this->_transport;
     }
 
@@ -290,7 +290,7 @@ class Ecube_Jcubelink_Model_Sync {
 
     /**
      * Fill transport object with defaults
-     * @return Ecube_Jcubelink_Model_Sync_Transport
+     * @return Ecube_JcubeConnect_Model_Sync_Transport
      */
     public function initTransport() {
         $transport = $this->getTransport();
@@ -324,7 +324,7 @@ class Ecube_Jcubelink_Model_Sync {
     /**
      * Sets $_cartSaveOccurred
      * @param boolean $state
-     * @return Ecube_Jcubelink_Model_Sync
+     * @return Ecube_JcubeConnect_Model_Sync
      */
     public function setCartSaveOccurred($state) {
         $this->_cartSaveOccurred = $state;

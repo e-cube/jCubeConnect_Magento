@@ -1,0 +1,7 @@
+<layout>
+    <jcubeconnect_adminhtml_jcubeconnect_index>
+        <reference name="content">
+            <block name="jcubeiframe" type="jcubeconnect/adminhtml_iframe" />
+        </reference>
+    </jcubeconnect_adminhtml_jcubeconnect_index>
+</layout>

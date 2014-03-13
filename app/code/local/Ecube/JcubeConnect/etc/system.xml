@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <sections>
-        <jcubelink translate="label" module="jcubelink">
+        <jcubeconnect translate="label" module="jcubeconnect">
             <label>jCube Link</label>
             <tab>advanced</tab>
             <sort_order>100</sort_order>
@@ -99,7 +99,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>5</sort_order>
-                            <comment>Don't send cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/^(\/jcubelink\/).*$/&lt;/em&gt;</comment>
+                            <comment>Don't send cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/^(\/jcubeconnect\/).*$/&lt;/em&gt;</comment>
                         </no_send_on_routes>
                         <api_url_getbasket translate="label comment">
                             <label>API URL Get basket</label>
@@ -108,7 +108,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>6</sort_order>
-                            <comment>For fake basket use &lt;em&gt;http://DOMAIN/jcubelink/fakebasket/getBasket&lt;/em&gt;</comment>
+                            <comment>For fake basket use &lt;em&gt;http://DOMAIN/jcubeconnect/fakebasket/getBasket&lt;/em&gt;</comment>
                         </api_url_getbasket>
                         <api_url_setbasket translate="label comment">
                             <label>API URL Set basket</label>
@@ -117,7 +117,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>7</sort_order>
-                            <comment>For fake basket use &lt;em&gt;http://DOMAIN/jcubelink/fakebasket/setBasket&lt;/em&gt;</comment>
+                            <comment>For fake basket use &lt;em&gt;http://DOMAIN/jcubeconnect/fakebasket/setBasket&lt;/em&gt;</comment>
                         </api_url_setbasket>
                     </fields>
                 </cartsync>
@@ -159,11 +159,11 @@
                         </log_transport>
                         <log_download translate="label">
                             <label>Download</label>
-                            <caption>Download jcubelink.log</caption>
-                            <action>jcubelink/adminhtml_jcubelink/downloadLog</action>
+                            <caption>Download jcubeconnect.log</caption>
+                            <action>jcubeconnect/adminhtml_jcubeconnect/downloadLog</action>
                             <css_class>scalable go</css_class>
                             <frontend_type>button</frontend_type>
-                            <frontend_model>jcubelink/adminhtml_system_config_form_field_button</frontend_model>
+                            <frontend_model>jcubeconnect/adminhtml_system_config_form_field_button</frontend_model>
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -171,12 +171,12 @@
                         </log_download>
                         <log_clear translate="label">
                             <label>Clear</label>
-                            <caption>Clear jcubelink.log</caption>
-                            <action>jcubelink/adminhtml_jcubelink/clearLog</action>
+                            <caption>Clear jcubeconnect.log</caption>
+                            <action>jcubeconnect/adminhtml_jcubeconnect/clearLog</action>
                             <action_confirm>Clear log file?</action_confirm>
                             <css_class>scalable</css_class>
                             <frontend_type>button</frontend_type>
-                            <frontend_model>jcubelink/adminhtml_system_config_form_field_button</frontend_model>
+                            <frontend_model>jcubeconnect/adminhtml_system_config_form_field_button</frontend_model>
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -185,6 +185,6 @@
                     </fields>
                 </advanced>
             </groups>
-        </jcubelink>
+        </jcubeconnect>
     </sections>
 </config>

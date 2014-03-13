@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <config>
     <modules>
-        <Ecube_Jcubelink>
+        <Ecube_JcubeConnect>
             <active>true</active>
             <codePool>local</codePool>
-        </Ecube_Jcubelink>
+        </Ecube_JcubeConnect>
     </modules>
 </config>

@@ -1,10 +1,10 @@
 <?php
 
-class Ecube_Jcubelink_Block_Adminhtml_Iframe extends Mage_Core_Block_Abstract {
+class Ecube_JcubeConnect_Block_Adminhtml_Iframe extends Mage_Core_Block_Abstract {
     protected $_helper;
 
     protected function _toHtml() {
-        $this->_helper = Mage::helper('jcubelink');
+        $this->_helper = Mage::helper('jcubeconnect');
 
         $url = $this->_helper->getFrameUrl();
 
@@ -18,6 +18,6 @@ class Ecube_Jcubelink_Block_Adminhtml_Iframe extends Mage_Core_Block_Abstract {
         $frameWidth = $this->_helper->getConfigData('frame/width');
         $frameHeight = $this->_helper->getConfigData('frame/height');
 
-        return '<iframe src="'.$url.'" width="'.$frameWidth.'" height="'.$frameHeight.'" id="jcubelinkframe" marginheight="0" frameborder="0"></iframe>';
+        return '<iframe src="'.$url.'" width="'.$frameWidth.'" height="'.$frameHeight.'" id="jcubeconnectframe" marginheight="0" frameborder="0"></iframe>';
     }
 }

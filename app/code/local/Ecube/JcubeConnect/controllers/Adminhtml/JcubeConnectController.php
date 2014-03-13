@@ -1,17 +1,17 @@
 <?php
 
-class Ecube_Jcubelink_Adminhtml_JcubelinkController extends Mage_Adminhtml_Controller_Action {
+class Ecube_JcubeConnect_Adminhtml_JcubeConnectController extends Mage_Adminhtml_Controller_Action {
     protected $_helper;
 
     protected function helper() {
         if (!isset($this->_helper))
-            $this->_helper = Mage::helper('jcubelink');
+            $this->_helper = Mage::helper('jcubeconnect');
         return $this->_helper;
     }
 
     protected function _initAction() {
         $this->loadLayout();
-        $this->_setActiveMenu('jcubelink');
+        $this->_setActiveMenu('jcubeconnect');
         return $this;
     }
 
@@ -21,14 +21,14 @@ class Ecube_Jcubelink_Adminhtml_JcubelinkController extends Mage_Adminhtml_Contr
 
     public function downloadLogAction() {
         $logPath = Mage::getBaseDir('var') . DS . 'log' . DS;
-        $logFile = $logPath . 'jcubelink.log';
+        $logFile = $logPath . 'jcubeconnect.log';
         if (!file_exists($logFile))
             $this->_redirectReferer();
 
         $zip = new ZipArchive();
-        $fileName = $logPath . 'jcubelink_log.zip';
+        $fileName = $logPath . 'jcubeconnect_log.zip';
         if ($zip->open($fileName, ZipArchive::OVERWRITE) === true) {
-            $zip->addFile($logFile, 'jcubelink.log');
+            $zip->addFile($logFile, 'jcubeconnect.log');
             $zip->close();
 
 
@@ -39,7 +39,7 @@ class Ecube_Jcubelink_Adminhtml_JcubelinkController extends Mage_Adminhtml_Contr
                 ->setHeader('Content-type', 'application/octet-stream', true);
 
             $this->getResponse()
-                ->setHeader('Content-Disposition', 'inline; filename=jcubelink_log.zip');
+                ->setHeader('Content-Disposition', 'inline; filename=jcubeconnect_log.zip');
 
             $this->getResponse()
                 ->clearBody();
@@ -55,7 +55,7 @@ class Ecube_Jcubelink_Adminhtml_JcubelinkController extends Mage_Adminhtml_Contr
 
     public function clearLogAction() {
         $logPath = Mage::getBaseDir('var') . DS . 'log' . DS;
-        $logFile = $logPath . 'jcubelink.log';
+        $logFile = $logPath . 'jcubeconnect.log';
         if (file_exists($logFile)) {
             if (unlink($logFile))
                 Mage::getSingleton('core/session')->addSuccess('Log cleared');

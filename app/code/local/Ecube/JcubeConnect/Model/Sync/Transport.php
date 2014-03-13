@@ -3,7 +3,7 @@
 /*
  * Sync transport data storage
  */
-class Ecube_Jcubelink_Model_Sync_Transport extends Varien_Object {
+class Ecube_JcubeConnect_Model_Sync_Transport extends Varien_Object {
     /*
      * Set some defaults
      */
@@ -40,7 +40,7 @@ class Ecube_Jcubelink_Model_Sync_Transport extends Varien_Object {
     }
 
     public function send($url) {
-        $api = Mage::getModel('jcubelink/sync_transport_api');
+        $api = Mage::getModel('jcubeconnect/sync_transport_api');
         $result = $api->sendRequest(
             $url,
             array('Content-Type: application/json'),

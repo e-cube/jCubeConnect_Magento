@@ -1,7 +1,7 @@
 <?php
 
-class Ecube_Jcubelink_Helper_Data extends Mage_Core_Helper_Abstract {
-    const XML_PATH_BASE = 'jcubelink';
+class Ecube_JcubeConnect_Helper_Data extends Mage_Core_Helper_Abstract {
+    const XML_PATH_BASE = 'jcubeconnect';
     const JCUBE_COOKIE = 'jcSessionId';
     const MAGENTO_COOKIE = 'frontend';
 

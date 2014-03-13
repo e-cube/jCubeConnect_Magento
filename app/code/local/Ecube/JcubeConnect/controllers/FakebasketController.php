@@ -1,6 +1,6 @@
 <?php
 
-class Ecube_Jcubelink_FakebasketController extends Mage_Core_Controller_Front_Action {
+class Ecube_JcubeConnect_FakebasketController extends Mage_Core_Controller_Front_Action {
     /**
      * Read basket from file and find parent product if needed
      * The parent product is normally provided by jCube but not sent by Magento
@@ -73,12 +73,12 @@ class Ecube_Jcubelink_FakebasketController extends Mage_Core_Controller_Front_Ac
         echo '<hr>';
 
         echo '<p>';
-        echo '<a href="/jcubelink/fakebasket/?' . time() . '">Refresh</a> | ';
-        echo '<a href="/jcubelink/fakebasket/clear">Empty cart</a> | ';
-        echo '<a href="/jcubelink/fakebasket/qtyInc">Increment quantity</a> | ';
-        echo '<a href="/jcubelink/fakebasket/qtyDec">Decrement quantity</a>';
+        echo '<a href="/jcubeconnect/fakebasket/?' . time() . '">Refresh</a> | ';
+        echo '<a href="/jcubeconnect/fakebasket/clear">Empty cart</a> | ';
+        echo '<a href="/jcubeconnect/fakebasket/qtyInc">Increment quantity</a> | ';
+        echo '<a href="/jcubeconnect/fakebasket/qtyDec">Decrement quantity</a>';
         echo '<br /><br />';
-        echo '<a href="/jcubelink/fakebasket/dummy">Load dummy cart</a>';
+        echo '<a href="/jcubeconnect/fakebasket/dummy">Load dummy cart</a>';
         echo '</p>';
     }
 

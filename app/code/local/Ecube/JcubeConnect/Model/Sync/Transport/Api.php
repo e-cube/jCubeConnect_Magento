@@ -1,6 +1,6 @@
 <?php
 
-class Ecube_Jcubelink_Model_Sync_Transport_Api {
+class Ecube_JcubeConnect_Model_Sync_Transport_Api {
     const ENTER = "\r\n";
     const DOUBLE_ENTER = "\r\n\r\n";
 
