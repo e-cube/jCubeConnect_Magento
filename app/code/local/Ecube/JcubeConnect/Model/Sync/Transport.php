@@ -35,7 +35,10 @@ class Ecube_JcubeConnect_Model_Sync_Transport extends Varien_Object {
             $res['quoteId'] = (int) $this->getQuoteId();
             $res['basketLines'] = $this->getCartItems();
         }
-        $res['visitorData'] = $this->getSessionData();
+        $res['visitorData'] = array(
+            'remote_addr' => (string) Mage::helper('core/http')->getRemoteAddr(),
+            'http_user_agent' => (string) Mage::helper('core/http')->getHttpUserAgent(),
+        );
         return $res;
     }
 

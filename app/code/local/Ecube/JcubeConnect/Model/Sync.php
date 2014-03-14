@@ -126,8 +126,8 @@ class Ecube_JcubeConnect_Model_Sync {
      */
     protected function processJcubeBasket() {
         $cart = $this->getCart();
-        $quote = $cart->getQuote();
-        //$quote = $this->getSession()->getQuote();
+        //$quote = $cart->getQuote();
+        $quote = $this->getSession()->getQuote();
         $jCubeItems = $this->getTransport()->getCartItems();
         $quoteChanged = false;
 
@@ -247,8 +247,8 @@ class Ecube_JcubeConnect_Model_Sync {
         $this->getTransport()->setQuoteId(0);
 
         $cart = $this->getCart();
-        if ($quote = $cart->getQuote()) {
-        //if ($quote = $this->getSession()->getQuote()) {
+        //if ($quote = $cart->getQuote()) {
+        if ($quote = $this->getSession()->getQuote()) {
             $this->getTransport()->setQuoteId($quote->getId());
 
             $items = $quote->getAllItems();
