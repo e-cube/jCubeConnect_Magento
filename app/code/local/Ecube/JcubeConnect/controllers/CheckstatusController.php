@@ -1,6 +1,6 @@
 <?php
 
-class Ecube_JcubeConnect_JcubeConnectController extends Mage_Core_Controller_Front_Action {
+class Ecube_JcubeConnect_CheckstatusController extends Mage_Core_Controller_Front_Action {
 
     /**
      * Controller index action

@@ -7,8 +7,6 @@ class Ecube_JcubeConnect_Model_Sync_Transport_Api {
     public function sendRequest($url, $headerData = array(), $postData = array(), $timeout = false) {
         // Get the curl session object
         $session = curl_init($url);
-        //print_r($headerData);
-        //die();
 
         // Set the POST options.
         curl_setopt($session, CURLOPT_POST, true);

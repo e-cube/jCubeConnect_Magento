@@ -1,7 +1,6 @@
 <?php
 
 class Ecube_JcubeConnect_Model_Sync {
-    const MAGENTO_COOKIE = 'frontend';
     const BASKET_RETREIVE = true;
     const BASKET_SEND = true;
 
@@ -12,28 +11,10 @@ class Ecube_JcubeConnect_Model_Sync {
     protected $_helper;
 
     /**
-     * Checkout session
-     * @var Mage_Checkout_Model_Session
-     */
-    protected $_session;
-
-    /**
      * Transport object
      * @var Ecube_JcubeConnect_Model_Sync_Transport
      */
     protected $_transport;
-
-    /**
-     * Flag that holds event state for checkout_cart_save_after
-     * @var boolean
-     */
-    protected $_cartSaveOccurred = false;
-
-    /**
-     * Flag that holds event state for customer_logout
-     * @var boolean
-     */
-    protected $_customerLogoutOccurred = false;
 
     /**
      * Load helper object
@@ -60,10 +41,6 @@ class Ecube_JcubeConnect_Model_Sync {
      */
     protected function getSession() {
         return Mage::getSingleton('checkout/session');
-        if (!isset($this->_session))
-            $this->_session = Mage::getSingleton('checkout/session');
-            //$this->_session = Mage::getSingleton('core/session', array('name' => 'frontend'));
-        return $this->_session;
     }
 
     /* Not used */
@@ -314,48 +291,6 @@ class Ecube_JcubeConnect_Model_Sync {
     }
 
     /**
-     * Gets $_cartSaveOccurred
-     * @return boolean
-     */
-    public function getCartSaveOccurred() {
-        return $this->_cartSaveOccurred;
-    }
-
-    /**
-     * Sets $_cartSaveOccurred
-     * @param boolean $state
-     * @return Ecube_JcubeConnect_Model_Sync
-     */
-    public function setCartSaveOccurred($state) {
-        $this->_cartSaveOccurred = $state;
-        return $this;
-    }
-
-    /**
-     * Gets $_customerLogoutOccurred
-     * @return boolean
-     */
-    public function getCustomerLogoutOccurred() {
-        return $this->_customerLogoutOccurred;
-    }
-
-    /**
-     * Sets $_customerLogoutOccurred
-     * @param boolean $state
-     */
-    public function setCustomerLogoutOccurred($state) {
-        $this->_customerLogoutOccurred = $state;
-        return $this;
-    }
-
-    /**
-     * NOT USED ANYMORE
-     */
-    public function startFrontendSession() {
-        Mage::getSingleton('core/session', array('name' => self::MAGENTO_COOKIE));
-    }
-
-    /**
      * Retreives and processes basket from jCube
      * Called from observer
      */
@@ -375,9 +310,6 @@ class Ecube_JcubeConnect_Model_Sync {
      */
     public function sendBasket($state = '') {
         if (!$this->helper()->isCartSendEnabled())
-            return;
-
-        if ($this->getCustomerLogoutOccurred())
             return;
 
         $this->initTransport();

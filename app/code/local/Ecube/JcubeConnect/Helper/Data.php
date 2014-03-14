@@ -3,7 +3,6 @@
 class Ecube_JcubeConnect_Helper_Data extends Mage_Core_Helper_Abstract {
     const XML_PATH_BASE = 'jcubeconnect';
     const JCUBE_COOKIE = 'jcSessionId';
-    const MAGENTO_COOKIE = 'frontend';
 
     protected $_debugEnabled;
     protected $_logForce;
@@ -73,4 +72,19 @@ class Ecube_JcubeConnect_Helper_Data extends Mage_Core_Helper_Abstract {
             $this->_logTransport = $this->getConfigData('advanced/log_transport');
         return $this->_logTransport;
     }
+    
+    public function isFrontend()
+    {
+        if(Mage::app()->getStore()->isAdmin())
+        {
+            return false;
+        }
+
+        if(Mage::getDesign()->getArea() == 'adminhtml')
+        {
+            return false;
+        }
+
+        return true;
+    }    
 }
