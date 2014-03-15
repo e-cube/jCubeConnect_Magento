@@ -1,6 +1,6 @@
 <?php
 
-class Ecube_JcubeConnect_Adminhtml_JcubeConnectController extends Mage_Adminhtml_Controller_Action {
+class Ecube_JcubeConnect_Adminhtml_JcubeconnectController extends Mage_Adminhtml_Controller_Action {
     protected $_helper;
 
     protected function helper() {
