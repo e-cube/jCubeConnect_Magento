@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Ecube_JcubeConnect>
-            <version>0.2.1</version>
+            <version>1.0.3</version>
         </Ecube_JcubeConnect>
     </modules>
 
