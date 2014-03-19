@@ -4,22 +4,14 @@
  * Sync transport data storage
  */
 class Ecube_JcubeConnect_Model_Sync_Transport extends Varien_Object {
-    /*
-     * Set some defaults
-     */
-    protected function _construct() {
-        $this->setData('customer_id', 0);
-        $this->setData('quote_id', 0);
-        $this->setData('cart_items', array());
-        $this->setData('send_quote', false);
-    }
 
     public function convertReceivedData($data) {
-        $this->setJcubeSessionId($data['jCubeSessionId']);
-        $this->setMagentoSessionId($data['magentoSessionId']);
-        $this->setCustomerId($data['customerId']);
-        $this->setQuoteId($data['quoteId']);
-        $this->setCartItems($data['basketLines']);
+        if (array_key_exists('jCubeSessionId', $data)) {
+            $this->setJcubeSessionId($data['jCubeSessionId']);
+        }
+        if (array_key_exists('basketLines', $data)) {
+            $this->setCartItems($data['basketLines']);
+        }
         return $this;
     }
 
