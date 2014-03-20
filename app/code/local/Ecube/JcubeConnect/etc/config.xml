@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Ecube_JcubeConnect>
-            <version>0.2.1</version>
+            <version>1.0.4</version>
         </Ecube_JcubeConnect>
     </modules>
 
@@ -78,7 +78,7 @@
                 <sort_order>51</sort_order>
                 <children>
                     <jcubeconnectgo translate="title">
-                        <title>jCube</title>
+                        <title>jCube databeheer</title>
                         <action>jcubeconnect/adminhtml_jcubeconnect</action>
                     </jcubeconnectgo>
                     <jcubeconnectconfig translate="title">
@@ -144,8 +144,8 @@
                 <no_retreive_on_routes>/^(\/jcubeconnect\/).*$/</no_retreive_on_routes>
                 <send>1</send>
                 <no_send_on_routes>/^(\/jcubeconnect\/).*$/</no_send_on_routes>
-                <api_url_getbasket>http://JCUBEDOMAIN/mgnapi/requestBasket</api_url_getbasket>
-                <api_url_setbasket>http://JCUBEDOMAIN/mgnapi/updateBasket</api_url_setbasket>
+                <api_url_getbasket>http://&lt;hostname&gt;/mgnapi/requestBasket</api_url_getbasket>
+                <api_url_setbasket>http://&lt;hostname&gt;/mgnapi/updateBasket</api_url_setbasket>
             </cartsync>
             <advanced>
                 <debug>0</debug>

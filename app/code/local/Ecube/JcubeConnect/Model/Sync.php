@@ -43,18 +43,6 @@ class Ecube_JcubeConnect_Model_Sync {
         return Mage::getSingleton('checkout/session');
     }
 
-    /* Not used */
-    protected function hasQuote() {
-        $session = $this->getSession();
-        return ($session->getQuote() !== null);
-    }
-
-    /* Not used */
-    protected function getQuote() {
-        $session = $this->getSession();
-        return $session->getQuote();
-    }
-
     /**
      * Get Magento cart object
      * Cart object handles most of the quote updates
@@ -103,7 +91,6 @@ class Ecube_JcubeConnect_Model_Sync {
      */
     protected function processJcubeBasket() {
         $cart = $this->getCart();
-        //$quote = $cart->getQuote();
         $quote = $this->getSession()->getQuote();
         $jCubeItems = $this->getTransport()->getCartItems();
         $quoteChanged = false;
@@ -177,7 +164,6 @@ class Ecube_JcubeConnect_Model_Sync {
                     $parent = false;
                     if ($item['parentId']) {
                         $parent = $this->initProduct($item['parentId']);
-                        //list($parentId) = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($product->getId());
                         if (!$parent) {
                             $this->helper()->log('Failed to load parent ' . $item['parentId'] . ' of child product ' . $productId, Zend_Log::WARN);
                         }
@@ -200,7 +186,9 @@ class Ecube_JcubeConnect_Model_Sync {
                 }
             }
         }
-        if ($saveCart) {
+
+        if ($saveCart || $quoteChanged) {
+            $cart->init(); // Note: if the cart changes we re-initialize it (similar to what indexAction() does in CartController.php )
             $cart->save();
             $this->getSession()->setCartWasUpdated(true);
         }
@@ -210,9 +198,6 @@ class Ecube_JcubeConnect_Model_Sync {
         else
             $this->helper()->log('Cart is up to date');
 
-        if ($quoteChanged) {
-            $quote->save();
-        }
     }
 
     /**
@@ -223,8 +208,6 @@ class Ecube_JcubeConnect_Model_Sync {
         $this->getTransport()->setCartItems(array());
         $this->getTransport()->setQuoteId(0);
 
-        $cart = $this->getCart();
-        //if ($quote = $cart->getQuote()) {
         if ($quote = $this->getSession()->getQuote()) {
             $this->getTransport()->setQuoteId($quote->getId());
 
@@ -238,7 +221,6 @@ class Ecube_JcubeConnect_Model_Sync {
 
                 $parentProductId = 0;
                 if ($item->getParentItemId()) {
-                    //$parentItem = $quote->getItemById($item->getParentItemId());
                     $parentItem = $item->getParentItem();
                     if ($parentItem) {
                         $parentProductId = $parentItem->getProductId();
@@ -247,11 +229,6 @@ class Ecube_JcubeConnect_Model_Sync {
                     else
                         $this->helper()->log('Failed to load parent product item row ' . $item->getParentItemId(), Zend_Log::WARN);
                 }
-                /*$cartItems[(int) $item->getProductId()] = array(
-                    'magentoProductId' => (int) $item->getProductId(),
-                    'quantity' => (int) $qty,
-                    'parentId' => (int) $parentProductId,
-                );*/
                 $cartItems[] = array(
                     'magentoProductId' => (int) $item->getProductId(),
                     'quantity' => (int) $qty,

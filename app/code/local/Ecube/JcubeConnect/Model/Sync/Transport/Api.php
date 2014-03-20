@@ -4,7 +4,7 @@ class Ecube_JcubeConnect_Model_Sync_Transport_Api {
     const ENTER = "\r\n";
     const DOUBLE_ENTER = "\r\n\r\n";
 
-    public function sendRequest($url, $headerData = array(), $postData = array(), $timeout = false) {
+    public function sendRequest($url, $headerData = array(), $postData = array(), $timeout = 1) {
         // Get the curl session object
         $session = curl_init($url);
 
