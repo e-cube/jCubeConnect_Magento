@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Ecube_JcubeConnect>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </Ecube_JcubeConnect>
     </modules>
 
@@ -141,9 +141,10 @@
             <cartsync>
                 <enabled>0</enabled>
                 <retreive>1</retreive>
-                <no_retreive_on_routes>/^(\/jcubeconnect\/).*$/</no_retreive_on_routes>
+                <no_retreive_on_routes>/doNotRetrieveCartFromJCube\=1/</no_retreive_on_routes>
                 <send>1</send>
-                <no_send_on_routes>/^(\/jcubeconnect\/).*$/</no_send_on_routes>
+                <no_send_on_routes>/doNotSendCartToJCube\=1/</no_send_on_routes>
+                <max_timeout_seconds>1</max_timeout_seconds>
                 <api_url_getbasket>http://&lt;hostname&gt;/mgnapi/requestBasket</api_url_getbasket>
                 <api_url_setbasket>http://&lt;hostname&gt;/mgnapi/updateBasket</api_url_setbasket>
             </cartsync>

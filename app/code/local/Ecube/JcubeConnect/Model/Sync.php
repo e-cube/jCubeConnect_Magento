@@ -68,10 +68,10 @@ class Ecube_JcubeConnect_Model_Sync {
     /**
      * Retreive basket from jCube (requestBasket)
      */
-    protected function retrieveBasketFromJCube() {
-        $this->initTransport();
+    protected function retrieveBasketFromJCube($requestUri = null) {
+        $this->initTransport($requestUri);
 
-        $result = $this->getTransport()->send($this->helper()->getConfigData('cartsync/api_url_getbasket'));
+        $result = $this->getTransport()->send($this->helper()->getConfigData('cartsync/api_url_getbasket'), $this->helper()->getConfigData('cartsync/max_timeout_seconds'));
         if ($result[0] != 200) {
             $this->helper()->log('Failed to retreive basket from jCube: ' . print_r($result, true), Zend_Log::ERR);
             return false;
@@ -246,10 +246,12 @@ class Ecube_JcubeConnect_Model_Sync {
      * Fill transport object with defaults
      * @return Ecube_JcubeConnect_Model_Sync_Transport
      */
-    public function initTransport() {
+    public function initTransport($requestUri = null) {
         $transport = $this->getTransport();
         $transport->setJcubeSessionId($this->helper()->getJcubeCookie());
         $transport->setMagentoSessionId($this->helper()->getMagentoCookie());
+
+        $transport->setRequestUri($requestUri);
 
         $transport->setCustomerId(0);
         $transport->setCustomerName('');
@@ -270,42 +272,37 @@ class Ecube_JcubeConnect_Model_Sync {
     /**
      * Retreives and processes basket from jCube
      * Called from observer
+     * @param  string $requestUri
      */
-    public function retreiveBasket() {
+    public function retreiveBasket($requestUri = null) {
         if (!$this->helper()->isCartRetreiveEnabled())
             return;
 
         $this->helper()->log('<< Retreive basket from jCube');
-        if ($this->retrieveBasketFromJCube())
+        if ($this->retrieveBasketFromJCube($requestUri))
             $this->processJcubeBasket();
         return;
     }
 
     /**
      * Load basket and send to jCube
-     * @param  string $state Send empty baske if $state == 'logout'
+     * @param  string $requestUri
      */
-    public function sendBasket($state = '') {
+    public function sendBasket($requestUri = null) {
         if (!$this->helper()->isCartSendEnabled())
             return;
 
-        $this->initTransport();
+        $this->initTransport($requestUri);
 
-        // always send empty basket on logout
-        if ($state == 'logout') {
-            $this->getTransport()->setCartItems(array());
-            $this->getTransport()->setQuoteId(0);
-        }
-        else {
-            $this->prepareBasketForSend();
-        }
+        $this->prepareBasketForSend();
+
         $this->getTransport()->setSendQuote(true);
 
         $this->helper()->log('>> Send basket to jCube');
 
         if ($this->helper()->getLogTransport())
             $this->helper()->log(print_r($this->getTransport()->toTransportArray(true), true));
-        $result = $this->getTransport()->send($this->helper()->getConfigData('cartsync/api_url_setbasket'));
+        $result = $this->getTransport()->send($this->helper()->getConfigData('cartsync/api_url_setbasket'), $this->helper()->getConfigData('cartsync/max_timeout_seconds'));
 
         if ($result[0] != 200) {
             $this->helper()->log('Failed to send basket to jCube: ' . print_r($result[0], true), Zend_Log::ERR);

@@ -12,6 +12,9 @@ class Ecube_JcubeConnect_Model_Sync_Transport extends Varien_Object {
         if (array_key_exists('basketLines', $data)) {
             $this->setCartItems($data['basketLines']);
         }
+        else {
+            $this->setCartItems(array());
+        }
         return $this;
     }
 
@@ -19,6 +22,7 @@ class Ecube_JcubeConnect_Model_Sync_Transport extends Varien_Object {
         $res = array(
             'jCubeSessionId' => (string) $this->getJcubeSessionId(),
             'magentoSessionId' => (string) $this->getMagentoSessionId(),
+            'requestUri' => (string) $this->getRequestUri(),
             'customerId' => (int) $this->getCustomerId(),
             'customerName' => (string) $this->getCustomerName(),
             'customerEmail' => (string) $this->getCustomerEmail(),
@@ -34,12 +38,13 @@ class Ecube_JcubeConnect_Model_Sync_Transport extends Varien_Object {
         return $res;
     }
 
-    public function send($url) {
+    public function send($url, $max_timeout_seconds) {
         $api = Mage::getModel('jcubeconnect/sync_transport_api');
         $result = $api->sendRequest(
             $url,
             array('Content-Type: application/json'),
-            json_encode($this->toTransportArray())
+            json_encode($this->toTransportArray()),
+            $max_timeout_seconds
         );
         return $result;
     }

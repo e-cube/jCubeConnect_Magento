@@ -80,7 +80,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>3</sort_order>
-                            <comment>Don't retreive cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/^(\/jcubeconnect\/).*$/&lt;/em&gt;</comment>
+                            <comment>Don't retreive cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/doNotRetrieveCartFromJCube\=1/&lt;/em&gt;</comment>
                         </no_retreive_on_routes>
                         <send translate="label comment">
                             <label>Send cart to jCube</label>
@@ -99,7 +99,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>5</sort_order>
-                            <comment>Don't send cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/^(\/jcubeconnect\/).*$/&lt;/em&gt;</comment>
+                            <comment>Don't send cart when uri matches this expression.&lt;br/&gt;Default: &lt;em&gt;/doNotSendCartToJCube\=1/&lt;/em&gt;</comment>
                         </no_send_on_routes>
                         <api_url_getbasket translate="label comment">
                             <label>API URL Get basket</label>
@@ -119,6 +119,15 @@
                             <sort_order>7</sort_order>
                             <comment>For example &lt;em&gt;http://&amp;lt;hostname&amp;gt;/mgnapi/updateBasket&lt;/em&gt;</comment>
                         </api_url_setbasket>
+                        <max_timeout_seconds translate="label comment">
+                            <label>Max timeout seconds</label>
+                            <frontend_type>text</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>8</sort_order>
+                            <comment>The maximum number of seconds before timeout.&lt;br/&gt;Default: 1 second</comment>
+                        </max_timeout_seconds>
                     </fields>
                 </cartsync>
                 <advanced translate="label">
