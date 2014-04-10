@@ -43,11 +43,11 @@ class Ecube_JcubeConnect_Model_Observer_Sync {
         try {
             if ($this->helper()->isFrontend()) {
                 $front = $observer->getData('controller_action');
-                $request = $front->getRequest()->getRequestUri();
-                if (!preg_match($this->helper()->getConfigData('cartsync/no_retreive_on_routes'), $request, $matches)) {
-                    $this->helper()->log('retrieveBasketFromJcube match: ' . $request);
+                $requestUri = $front->getRequest()->getRequestUri();
+                if (!preg_match($this->helper()->getConfigData('cartsync/no_retreive_on_routes'), $requestUri, $matches)) {
+                    $this->helper()->log('retrieveBasketFromJcube match: ' . $requestUri);
                     $sync = Mage::getSingleton('jcubeconnect/sync');
-                    $sync->retreiveBasket();
+                    $sync->retreiveBasket($requestUri);
                 }
             }
         }
@@ -60,11 +60,11 @@ class Ecube_JcubeConnect_Model_Observer_Sync {
 
         try {
             if ($this->helper()->isFrontend()) {
-                $request = $observer->getFront()->getRequest()->getRequestUri();
-                if (!preg_match($this->helper()->getConfigData('cartsync/no_send_on_routes'), $request, $matches)) {
-                    $this->helper()->log('sendBasketToJcube ' . $request);
+                $requestUri = $observer->getFront()->getRequest()->getRequestUri();
+                if (!preg_match($this->helper()->getConfigData('cartsync/no_send_on_routes'), $requestUri, $matches)) {
+                    $this->helper()->log('sendBasketToJcube ' . $requestUri);
                     $sync = Mage::getSingleton('jcubeconnect/sync');
-                    $sync->sendBasket();
+                    $sync->sendBasket($requestUri);
                 }
             }
         }
